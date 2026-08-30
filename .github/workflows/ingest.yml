@@ -23,7 +23,7 @@ jobs:
       - name: Parse recent House PTRs
         run: |
           node ingest_house_ptr.mjs > congress_house.json.tmp
-          node -e "const j=require('./congress_house.json.tmp');if(!j||!Array.isArray(j.rows)||!j.rows.length)process.exit(1)"
+          node -e "const j=JSON.parse(require('fs').readFileSync('congress_house.json.tmp','utf8'));if(!j||!Array.isArray(j.rows)||!j.rows.length)process.exit(1)"
           mv congress_house.json.tmp congress_house.json
       - name: Commit if changed
         run: |

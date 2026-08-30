@@ -83,7 +83,7 @@ async function main() {
     let txns = [];
     try {
       const pr = await fetch(url, { headers: { "User-Agent": UA } });
-      if (pr.ok) txns = parsePtrText(await pdfText(new Uint8Array(await pr.arrayBuffer())), { url, docid: f.doc });
+      if (pr.ok) txns = parsePtrText(await pdfText(new Uint8Array(await pr.arrayBuffer())), { url, docid: f.doc, last: f.last, state: f.state });
     } catch (e) { process.stderr.write(`warn ${f.doc}: ${e.message}\n`); }
     if (txns.length) rows.push(...txns);
     else rows.push({ d: iso(f.date), chamber: "House", who: `Rep. ${f.last}${f.state ? " · " + f.state : ""}`, t: null, act: null, amt: null, url, kind: "ptr-filing" }); // keep filing-level presence
