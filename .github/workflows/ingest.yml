@@ -29,8 +29,8 @@ jobs:
         run: |
           git config user.name "congress-ingest-bot"
           git config user.email "bot@users.noreply.github.com"
-          if ! git diff --quiet -- congress_house.json; then
-            git add congress_house.json
+          git add congress_house.json
+          if ! git diff --cached --quiet; then
             git commit -m "chore: refresh House PTR trades $(date -u +%Y-%m-%dT%H:%MZ)"
             git push
           else
