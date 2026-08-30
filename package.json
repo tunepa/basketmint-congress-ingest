@@ -1,0 +1,9 @@
+{
+  "name": "basketmint-congress-ingest",
+  "private": true,
+  "type": "module",
+  "description": "Scheduled parse of House PTR PDFs -> congress_house.json for the Basket Mint terminal.",
+  "dependencies": {
+    "pdfjs-dist": "4.4.168"
+  }
+}
